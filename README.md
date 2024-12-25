@@ -8,15 +8,15 @@
 创建一个与用户名相同名称的仓库，并在初始化仓库时添加一个 README.md 文件。
 要再次修改点击个人资料照片，然后点击 Your profile
 
+要生成表格可以这样：
+| | |
+|-|-|
+
 | Rank | Languages |
 |-----:|-----------|
 |     1| JavaScript|
 |     2| Python    |
 |     3| SQL       |
 
-
-| lalfasdf | asdfdasf |
-|----------|----------|
-|sadffsdaf asdsadfasdfsadfsadfsafsfsf|dfasdf|
 
 
