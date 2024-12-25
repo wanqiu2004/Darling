@@ -9,9 +9,6 @@
 要再次修改点击个人资料照片，然后点击 Your profile
 
 要生成表格可以这样：
-| | |
-|-||
-
 | Rank | Languages |
 |-----:|-----------|
 |     1| JavaScript|
