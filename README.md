@@ -15,5 +15,18 @@
 |     2| Python    |
 |     3| SQL       |
 
+创建一个可展开的折叠部分：
+添加open属性默认展开
+<details>
+<summary>My top THINGS-TO-RANK</summary>
 
+YOUR TABLE
+
+</details>
+
+<details>
+  <summary>Detils</summary>
+  | Detials | Detials |
+  |---------|---------|
+</details>
 
