@@ -18,11 +18,23 @@
 创建一个可展开的折叠部分：
 添加open属性默认展开
 <details>
-  <summary>Detils</summary>
-    | Rank | Languages |
-    |-----:|-----------|
-    |     1| JavaScript|
-    |     2| Python    |
-    |     3| SQL       |
+  <summary>asdfdsaf </summary>
+  | Rank | Languages |
+  |-----:|-----------|
+  |     1| JavaScript|
+  |     2| Python    |
+  |     3| SQL       |
 </details>
+
+<details>
+  <summary>My top languages</summary>
+
+  | Rank | Languages |
+  |-----:|-----------|
+  |     1| JavaScript|
+  |     2| Python    |
+  |     3| SQL       |
+
+</details>
+
 
