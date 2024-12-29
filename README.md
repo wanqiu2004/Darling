@@ -96,3 +96,12 @@ CTRL K 在最前面添加!然后填图片的url可以查看图片
 - [ ] Add delight to the experience when all tasks are complete :tada:
 
 \- [ ] asdfasdf   任务列表
+
+
+输入后:在输入一些字符会显示建议的表情符号列表。
+
+\> [!NOTE]
+\> Useful information that users should know, even when skimming content.
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
