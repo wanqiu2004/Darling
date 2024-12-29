@@ -7,6 +7,7 @@
 - WebDriver 测试框架
 
 |组件|作用|
-|---|----|
+|---|---|
 |WebDriver|W3C 标准的一个平台和语言无关的协议。该协议允许进程外的程序远程指示 Web 浏览器的行为。|
 |Microsoft Edge WebDriver|Microsoft 对 WebDriver 协议的实现，专门针对 Microsoft Edge。|
+|WebDriver 测试框架|提供一个语言特定的接口，将代码翻译成可以发送到 WebDriver 的命令。适用于所有主要平台和语言。Selenium WebDriver 是其中一个框架。|
