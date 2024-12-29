@@ -47,5 +47,17 @@
 可以添加HTML同款的注释
 <!-- TO DO: add more details about me later -->
 
+GitHub 上的每个评论区都包含一个文本格式工具栏，
+
+在 GitHub 上任意页面的右上角，单击您的个人资料照片，然后单击“设置”。
+在左侧边栏中，单击外观。
+在“Markdown 编辑器字体首选项”下，选择编辑 Markdown 时使用等宽（等宽）字体。
+
+
+使用两个或更多标题时，GitHub 会自动生成一个目录，在左上角
+
+Ctrl+ I Ctrl + B
+
+左边~~ 右边 ~~表示删除线
 
 
