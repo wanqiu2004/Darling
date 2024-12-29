@@ -60,4 +60,16 @@ Ctrl+ I Ctrl + B
 
 左边~~ 右边 ~~表示删除线
 
+\<ins>是下划线
+\<sub>下标
+\<sup>上标
+
+
+CTRL E 是代码段
+
+三重\`是代码段
+`git status
+git add
+git commit
+`
 
