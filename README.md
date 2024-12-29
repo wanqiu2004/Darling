@@ -73,3 +73,13 @@ git add
 git commit
 `
 
+
+Command+K来创建链接
+
+自定义
+\<a name="my-custom-anchor-point"></a>
+CTRL K的url部分填#my-custom-anchor-poin
+
+\![](https://myoctocat.com/assets/images/base-octocat.svg)
+CTRL K 在最前面添加!然后填图片的url可以查看图片
+
