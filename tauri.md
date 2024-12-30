@@ -13,3 +13,11 @@ yarn tauri init
 yarn tauri dev
 yarn tauri build --no-bundle
 ```
+
+# TODO:Core Concepts and Security
+
+Tauri 会自动监视你的 Rust 文件的变化。一旦你修改了其中的任何文件，Tauri 会自动重新构建应用并重启它。这与 webview 中实时反映变化的方式类似。
+`yarn tauri dev --no-watch`
+
+始终将 src-tauri/Cargo.lock 和 src-tauri/Cargo.toml 一起commit，以确保构建的确定性。
+不要提交：避免提交 src-tauri/target 目录或其中的任何内容，因为它包含构建产物。
