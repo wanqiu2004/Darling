@@ -10,6 +10,13 @@ Go 最后一个使用 C 编写的版本Go 1.4
 Go 的编译环境可以通过环境变量进行定制。
 可以在同一台机器上安装多个 Go 版本。需要确保已安装 Git。
 
+Linux安装
+```
+$ sudo tar -C /usr/local -xzf go1.23.4.linux-amd64.tar.gz
+$ export PATH=$PATH:/usr/local/go/bin
+$ source $HOME/.profile
+```
+
 多版本Go
 ```
 $ go install golang.org/dl/go1.10.7@latest
