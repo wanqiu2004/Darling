@@ -38,4 +38,4 @@ $ go1.10.7 env GOROOT
 查看3方包info`go list -m example.com/some/package`
 安装`go get github.com/gorilla/mux`
 
-#问题1 go.mod ？与go run . go.sum
+# 问题1 go.mod ？与go run . go.sum
