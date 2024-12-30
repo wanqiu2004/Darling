@@ -29,3 +29,8 @@ $ go1.10.7 env GOROOT
 删除 Go
 删除 Go 目录，通常是 /usr/local/go。
 编辑 /etc/profile 或 $HOME/.profile环境变量中删除 Go 的 bin 目录。
+
+
+运行代码`go run hello.go`
+查看3方包info`go list -m example.com/some/package`
+安装`go get github.com/gorilla/mux`
