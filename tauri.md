@@ -4,3 +4,12 @@ Tauri 利用了每个用户系统中已有的原生 WebView。因此，Tauri 应
 - Desktop development with C++
 - MSVCv143-VS 2022 C++x64/x86Spectre
 - 如果你的系统未安装 WebView2，请按照以下步骤手动安装：访问 WebView2 Runtime 下载页面。下载并安装 “Evergreen Bootstrapper” 版本。
+
+
+### 可以使用 Tauri CLI 单独初始化项目的后端部分。
+```
+yarn add -D @tauri-apps/cli@latest
+yarn tauri init
+yarn tauri dev
+yarn tauri build --no-bundle
+```
