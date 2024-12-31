@@ -67,3 +67,7 @@ git log -<n> --stat 选项在每次提交的下面列出所有被修改过的文
 git log -<n> --patch[-p] 更加详细
 
 --pretty 与 --graph
+
+
+# git commit 手册
+创建一个提交，含当前索引中的所有内容及描述，分支会更新以指向该提交
