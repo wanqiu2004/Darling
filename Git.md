@@ -32,5 +32,17 @@
 ![](https://git-scm.com/book/zh/v2/images/lifecycle.png)
 
 `git status --short `
+`git diff --staged`
+--staged 和 --cached 是同义词
+
+`给 git commit 加上 -a 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 git add 步骤`
+
+删除git仓库及磁盘文件
+`$ git rm [--cached] README`
+`$ git mv README.md README`
 
 # .gitignore
+
+
+
+git diff 修改之后还没有暂存起来的变化
