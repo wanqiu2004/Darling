@@ -46,3 +46,13 @@
 
 
 git diff 修改之后还没有暂存起来的变化
+
+
+
+---
+git commit -a -m
+git status -s
+git rm
+git mv 
+git diff
+---
