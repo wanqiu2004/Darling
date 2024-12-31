@@ -27,3 +27,10 @@
 `git clone https://github.com/libgit2/libgit2 [自定义名]`
 这会在当前目录下创建一个名为 “libgit2” 的目录，并在这个目录下初始化一个 .git 文件夹， 从远程仓库拉取下所有数据放入 .git 文件夹，然后从中读取最新版本的文件的拷贝。
 初次克隆某个仓库的时候，工作目录中的所有文件都属于已跟踪文件，并处于未修改状态
+
+
+![](https://git-scm.com/book/zh/v2/images/lifecycle.png)
+
+`git status --short `
+
+# .gitignore
