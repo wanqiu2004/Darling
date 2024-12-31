@@ -18,3 +18,7 @@
 - ~/.gitconfig 或 ~/.config/git/config 文件传递 --global 选项让 Git 读写此文件，这会对你系统上 所有 的仓库生效。
 
 - .git/config）默认情况下用的就是它。
+
+
+通过以下命令查看所有的配置[以及它们所在的文件]：
+`git config --list [--show-origin]`
