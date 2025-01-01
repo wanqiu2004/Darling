@@ -38,7 +38,7 @@ SET sql_mode = 'TRADITIONAL';
 SET sql_mode = '';
 
 
-# 数值类型： 5种INT DECIMAL FLOAT DOUBLE BIT 
+## 数值类型： 5种INT DECIMAL FLOAT DOUBLE BIT 
 
 
 MySQL 支持多种日期和时间数据类型，分别用于表示不同的时间值，包括 DATE、TIME、DATETIME、TIMESTAMP 和 YEAR。每种数据类型都有其有效值的范围，并且都有一个“零值”，可以在指定无效值时使用。STRICT模式：当启用严格 SQL 模式时，MySQL 会严格检查日期和时间值是否有效，并拒绝无效日期。MySQL 从 5.6.4 版本开始，支持将时间类型值的精度扩展到毫秒。自动初始化自动更新MySQL 允许存储 '0000-00-00' 作为“零值日期”。这种情况可能比使用 NULL 值更方便，因为它占用的空间更少，且便于索引。在某些场景下，使用 ZERO 日期比 NULL 更有优势。STRICT模式：当启用严格 SQL 模式时，MySQL 会严格检查日期和时间值是否有效，并拒绝无效日期。
@@ -76,8 +76,22 @@ epoch（1970-01-01 00:00:00 UTC）
 DATETIME 和 TIMESTAMP 数据类型提供了将当前日期和时间自动初始化和更新的功能。TIMESTAMP 类型的值在存储时会从当前时区转换为 UTC，并在检索时从 UTC 转换回当前时区。当前时区的值由 time_zone 系统变量提供
 
 
+
+
+TIMESTAMP 和 DATETIME 列可以被自动初始化为当前的日期和时间（即当前时间戳），并在行数据修改时自动更新。
+可以将当前时间戳指定为初始化、自动更新值，或者两者都指定：
+自动初始化列：对于插入数据时没有为该列指定值的行，会将该列初始化为当前时间戳。
+自动更新列：当行中的其他列的值发生变化时，自动更新该列为当前时间戳。要防止在其他列更改时自动更新该列，可以明确将该列设置为当前值。要在其他列不变化时仍然更新该列，可以显式将其设置为当前时间戳（例如，使用 CURRENT_TIMESTAMP）。
+
+
 YEAR 类型是一个 1 字节的类型，用于表示年份值。
 
 
 YEAR 类型的值以 YYYY 格式显示。
 支持的年份范围是 1901 到 2155，以及特殊的 0000。数字字符串与字符串
+
+默认值和自动更新值都使用 CURRENT_TIMESTAMP
+DEFAULT CURRENT_TIMESTAMP\ 
+ON UPDATE CURRENT_TIMESTAMP
+
+## DATE TIME DATETIME TIMESTAMP YEAR CURRENT_TIMESTAMP
