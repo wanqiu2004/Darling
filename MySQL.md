@@ -10,7 +10,8 @@ SERIAL 是 BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE 的别名。
 在定义整数列时，SERIAL DEFAULT VALUE 是 NOT NULL AUTO_INCREMENT UNIQUE 的别名。
 
 MySQL 支持的整数类型的存储要求和取值范围
-类型	存储（字节）	带符号最小值	无符号最小值	带符号最大值	无符号最大值
+|类型|	存储（字节）|	带符号最小值	|无符号最小值	|带符号最大值	|无符号最大值
+|---|---|---|---|---|---|
 TINYINT	1	-128	0	127	255
 SMALLINT	2	-32768	0	32767	65535
 MEDIUMINT	3	-8388608	0	8388607	16777215
