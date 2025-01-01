@@ -36,3 +36,6 @@ SET sql_mode = 'TRADITIONAL';
 
 
 SET sql_mode = '';
+
+
+# 数值类型： 5种INT DECIMAL FLOAT DOUBLE BIT 
