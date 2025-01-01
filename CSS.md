@@ -12,5 +12,5 @@
 - **flex-direction**
 如果你想要的布局是从上到下、从左至右、从右至左的，抑或是从下到上的，可以使用**flex-direction属性**控制排布弹性元素的主轴。
 是从上到下、从左至右、从右至左的，抑或是从下到上
-可以的值是row row-reverse column column-reverse
+可以的值是row(默认) row-reverse column column-reverse
 
