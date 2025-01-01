@@ -32,5 +32,7 @@ BIT(M) 类型允许存储 M 位的值，其中 M 的范围为 1 到 64。
 如果启用了严格的 SQL 模式（strict SQL mode），MySQL 会拒绝超出范围的值并报错，插入操作会失败，这符合 SQL 标准。
 如果没有启用严格模式，MySQL 会将值修剪到该列数据类型范围的适当端点，并存储修剪后的结果。
 
-```SET sql_mode = 'TRADITIONAL';
-SET sql_mode = '';```
+SET sql_mode = 'TRADITIONAL';
+
+
+SET sql_mode = '';
