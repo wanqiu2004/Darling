@@ -13,4 +13,15 @@
 如果你想要的布局是从上到下、从左至右、从右至左的，抑或是从下到上的，可以使用**flex-direction属性**控制排布弹性元素的主轴。
 是从上到下、从左至右、从右至左的，抑或是从下到上
 可以的值是row(默认) row-reverse column column-reverse
+- **flex-wrap**
+元素在弹性容器的主轴上放不下，默认情况下弹性元素不会换行，也不会自行调整尺寸，边界溢出
+flex-wrap属性，允许弹性元素换行，变成多行或多列，或者缩减尺寸，挤在同一行。
+取值nowrap wrap上 wrap-reverse
+
+flex-flow属性是flex-direction和flex-wrap两个属性的简写形式
+
+- ** justify-content**
+分配子元素的空余空间。
+flex-start|flex-end|center|space-between|space-around|space-evenly
+
 
