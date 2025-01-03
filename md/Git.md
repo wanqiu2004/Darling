@@ -88,6 +88,8 @@ git log -<n> --patch[-p] 更加详细
 
 想查看你已经配置的远程仓库服务器，可以运行 `git remote` 命令。 它会列出你指定的每一个远程服务器的简写。 \
 如果你已经克隆了自己的仓库，那么至少应该能看到 origin ——这是 Git 给你克隆的仓库服务器的默认名字
+添加一个自己的仓库
+git remote add <shortname> <url> 添加一个新的远程 Git 仓库，同时指定一个方便使用的简写
 
 从远程仓库中抓取与拉取使用`git fetch <remote>`
 这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。
@@ -95,7 +97,51 @@ git log -<n> --patch[-p] 更加详细
 如果你使用 clone 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写。 所以，git fetch origin 会抓取克隆（或上一次抓取）后新推送的所有工作。 必须注意 git fetch 命令只会将数据下载到你的本地仓库——它并不会自动合并或修改你当前的工作。 当准备好时你必须手动将其合并入你的工作。
 
 
+如果想要查看某一个远程仓库的更多信息，可以使用 git remote show <remote> 命令。
+列出了当你在特定的分支上执行 git push 会自动地推送到哪一个远程分支。 它也同样地列出了哪些远程分支不在你的本地，哪些远程分支已经从服务器上移除了， 还有当你执行 git pull 时哪些本地分支可以与它跟踪的远程分支自动合并。
+
+
+你可以运行 git remote rename 来修改一个远程仓库的简写名。 例如，想要将 pb 重命名为 paul，可以用 git remote rename 这样做：
+$ git remote rename pb paul
+
+
 当前分支设置了跟踪远程分支， 那么可以用 git pull 命令来自动抓取后合并该远程分支到当前分支。 默认情况下，git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或其它名字的默认分支）。 运行 git pull 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。
+
+
+## 查看远程仓库 添加远程仓库 从远程仓库中抓取与拉取 远程仓库的重命名与移除
+
+
+
+
+# Git 基础 - 打标签
+列出标签
+ git tag
+创建标签
+轻量标签（lightweight）和附注标签（annotated）。
+git tag [-a]
+后期打标签
+git tag [-a] v1.2 9fceb02
+共享标签
+git push origin --tags
+删除标签
+本地标签可以通过 git tag -d <tagname> 删除。
+删除远程标签需要使用 git push origin :refs/tags/<tagname> 或 git push origin --delete <tagname>。
+检出标签：
+使用 git checkout <tagname> 可以检出标签，但会进入“分离头指针”（detached HEAD）状态
+
+
+
+# Git 基础 - Git 别名
+觉得某些命令过于冗长或频繁使用，可以为它们创建别名。
+git config --global alias.co checkout：将 git checkout 命令设置为 git co。
+
+
+
+
+
+
+
+
 
 
 
@@ -110,3 +156,88 @@ git log -<n> --patch[-p] 更加详细
 git log origin..HEAD
 列出 当前分支（HEAD）中有，但远程分支（origin/main）中没有的提交。
 同样功能的是git log HEAD ^origin
+
+
+--follow显示该文件的完整历史，包括重命名之前的提交。
+decorate附带引用名称（例如分支、标签）
+
+--source
+描述：显示每个提交所达到的引用名称。
+
+
+-L<start>,<end>:<file>, -L:<funcname>:<file>可以多次使用 -L 选项
+
+
+git log commit1..commit2列出从 commit1 到 commit2 之间的所有提交
+
+
+-- path/to/file1 path/to/file2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+提供了许多选项来限制显示的提交数量或过滤特定的提交
+-<number>, -n <number>
+--skip=<number>
+
+
+--since=<date>, --after=<date>
+--until=<date>, --before=<date>
+
+
+--[no-]merges
+
+--tags[=<pattern>]
+git log --tags="v1.*"
+
+
+--remotes[=<pattern>]
+git log --remotes="origin/*"
+
+
+显示两个分支 A 和 B 之间的差异
+--cherry-mark  --cherry-pick--left-only, --right-only
+--cherry 是 --right-only --cherry-mark --no-merges 的简写
+
+
+--pretty=<format> 或 --format=<format>：此选项允许你指定一个自定义格式来显示提交日志。
+--parents
+功能：打印提交的父提交（以“commit parent...”的形式）。启用此选项后，父提交将被显示，帮助你理解该提交的来源。
+应用场景：适用于你想要看到提交的父级关系或在分析某个提交时，需要查看它的直接父提交。
+2. --children
+功能：打印提交的子提交（以“commit child...”的形式）。启用此选项后，提交的所有子提交也会显示出来。
+应用场景：用于查看某个提交的所有后续提交，帮助理解分支和合并的历史。
+占位符说明：
+
+%h：简短的提交哈希。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
