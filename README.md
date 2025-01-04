@@ -1,16 +1,15 @@
-# MySQL 数字字符串日期
-- git commit -a 
-- git status 
+# MySQL 数据类型
+- git status -s
 - git log --stat
-- git pull
-- git push origin main
 - git diff
 - git tag
 
-# CSS flex 
+# CSS flex 练习
 
-# edge css
+# edge css 工具
 
 # tauri 
+
+# Java类的定义
 
 
