@@ -24,4 +24,20 @@ flex-flow属性是flex-direction和flex-wrap两个属性的简写形式
 分配子元素的空余空间。
 flex-start|flex-end|center|space-between|space-around|space-evenly
 
+---
 
+- 依赖父子关系
+- 容器显示为块or行内？display: flex; displ: inline-flex
+- 弹性元素布局方向flex-direction
+- 元素太多，容器空间不够怎么办，减小元素尺寸还是是否允许换行flex-wrap
+- 空白怎么处理？主轴：justify-content 垂轴：align-items  align-self
+- 元素对齐
+- 一维
+
+
+flex-direction 4
+flex-wrap 3
+justify-content 6
+align-items 5
+align-self 6
+align-content 7
