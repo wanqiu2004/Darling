@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>FlexBox</title>
+        <style>
+            .container {
+                display: flex;
+                flex-flow: row wrap;
+                margin: 10px auto;
+                height: auto;
+                width: 85%;
+                border: 2px solid aquamarine;
+            }
+
+            .text {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                margin: 0px;
+                padding: 0px;
+                width: 100%;
+                height: auto;
+                background-color: lightblue;
+                border-bottom: 1px solid #000;
+                font-weight: bold;
+            }
+            .examle {
+                display: flex;
+                height: auto;
+                width: 100%;
+                margin: 10px;
+                padding: 10px;
+                background-color: lightpink;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .item{
+                display: flex;
+                width: 100%;
+                height: auto;
+            }
+
+            .rectangle {
+                margin: 5px;
+                width: 50px;
+                height: 30px;
+                background-color: lightcoral;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="text">
+                <p>flex-direction</p>   
+                <ul>
+                    <li>row</li>
+                    <li>row-reverse</li>
+                    <li>column</li>
+                    <li>column-reverse</li>
+                </ul>
+            </div>
+
+            <div class="examle">
+                <p>row是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+            
+            <div class="examle" style="flex-direction: row-reverse;">
+                <p>row是这样的</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+
+            <div class="examle" style="flex-direction: column;">
+                <p>column是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+
+            <div class="examle" style="flex-direction: column-reverse;">
+                <p>column-reverse是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="text">
+                <p>flex-wrap</p>   
+                <ul>
+                    <li>nowrap</li>
+                    <li>wrap</li>
+                    <li>wrap-reverse</li>
+                </ul>
+            </div>
+
+            <div class="" style="background-color: lightpink; display: flex; flex-wrap: nowrap; justify-content: center; align-items: center;">
+                <p>nowrap是这样的：</p>
+                <div class="rectangle" style="width: 1200px;">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+            
+            <div class="examle" style="flex-wrap: wrap;">
+                <p>wrap是这样的</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle" style="width: 95%;">4</div>
+            </div>
+
+            <div class="examle" style="flex-wrap: wrap-reverse;">
+                <p>wrap-reverse是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle" style="width: 95%;">4</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="text">
+                <p>justify-content</p>
+                <ul>
+                    <li>flex-start</li>
+                    <li>flex-end</li>
+                    <li>center</li>
+                    <li>space-between</li>
+                    <li>space-around</li>
+                    <li>space-evenly</li>
+                </ul>
+            </div>
+            <div class="examle" style="justify-content: flex-start;">
+                <p>flex-start是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+            <div class="examle" style="justify-content: flex-end;">
+                <p>flex-end是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+            <div class="examle" style="justify-content: center;">
+                <p>center是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+            <div class="examle" style="justify-content: space-around;">
+                <p>space-around是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+            <div class="examle" style="justify-content: space-between;">
+                <p>space-between是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+            <div class="examle" style="justify-content: space-evenly;">
+                <p>space-evenly是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="text">
+                <p>align-items</p>
+                <ul>
+                    <li>flex-start</li>
+                    <li>flex-end</li>
+                    <li>center</li>
+                    <li>baseline</li>
+                    <li>stretch</li>
+                </ul>
+            </div>
+            <div class="examle" style="height: 100px; align-items: flex-start;">
+                <p>flex-start是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+                <div class="rectangle">5</div>
+            </div>
+            <div class="examle" style="height: 100px; align-items: flex-end;">
+                <p>flex-end是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+                <div class="rectangle">5</div>
+            </div>
+            <div class="examle" style="height: 100px; align-items: center;">
+                <p>center是这样的：</p>
+                <div class="rectangle">1</div>
+                <div class="rectangle">2</div>
+                <div class="rectangle">3</div>
+                <div class="rectangle">4</div>
+                <div class="rectangle">5</div>
+            </div>
+            <div class="examle" style="height: 100px; align-items: stretch;">
+                <p>stretch是这样的：</p>
+                <div style="width: 50px; background-color: lightcoral; text-align: center; margin: 0 10px;">1</div>
+                <div style="width: 50px; background-color: lightcoral; text-align: center; margin: 0 10px;">2</div>
+                <div style="width: 50px; background-color: lightcoral; text-align: center; margin: 0 10px;">3</div>
+                <div style="width: 50px; background-color: lightcoral; text-align: center; margin: 0 10px;">4</div>
+                <div style="width: 50px; background-color: lightcoral; text-align: center; margin: 0 10px;">5</div>
+            </div>
+            <div class="examle" style="height: 100px; align-items: baseline;">
+                <p>baseline是这样的：</p>
+                <div style="width: 50px; background-color: lightcoral; text-align: center; margin: 0 10px; font-size: 50px;">a</div>
+                <div class="rectangle">b</div>
+                <div class="rectangle">c</div>
+                <div class="rectangle">d</div>
+                <div class="rectangle">e</div>
+            </div>
+        </div>
+    </body>
+</html>

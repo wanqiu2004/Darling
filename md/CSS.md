@@ -100,3 +100,34 @@ grid-template-rows,grid-template-columns
 来看看宽度固定的栅格轨道
 grid-template-columns:[start col-a] 200px[col-b] 50%[col-c] 100px[stop end last];
 [content] minmax（3em,100%)
+
+grid-template-columns:1fr 1fr 1fr 1fr;
+grid-template-columns:25%25% 25% 25%;
+
+假设我们想增加一列，而且确保每一列的宽度仍是相等的。如果使用百分数，我们要重写整个值，把各列的尺寸改为20%。但是使用fr的话，只需再加一个1fr即可
+
+处理fr单位的方式是，拿可用空间除以fr值之和，各轨道的尺寸等于fr值所对应的份数
+
+假如你想得到三列，中间一列的宽度为其他两列的两倍。那么，可以这样声明：grid-template-columns:1fr 2fr 1fr;
+
+但fr可不只是百分数的替代品这么简单，它还有更强大的功能
+grid-template-columns:15em 1fr 10%;
+不管余下多少空间，都分给中间一列
+混用百分数和 fr 单位例如：minmax(10%, 1fr) 表示列的宽度：不小于容器宽度的 10%。如果有剩余空间，可以进一步扩展。
+
+
+
+## 弹性栅格轨道
+想确保第三列的宽度不小于5em，可以把CSS声明改为：grid-template-columns:15em 4.5fr minmax(5em,3fr) 10%;
+
+## 根据内容设定轨道的尺寸
+min-content、max-content、auto minmax()函数结合
+
+max-content:表示“占据内容所需的最大空间”。当用于栅格布局时，每个轨道的宽度或高度会根据轨道中最大内容的尺寸调整。
+如果把一列的尺寸设为max-content，那么整个列轨道的宽度都与列中最宽的内容一样。
+这样做的好处是，内容可以是任何类型。如果为照片加上描述文字，所有行和列的尺寸都会调整，以便放下文本和图像
+max-content经常出现在minmax（）语句中。
+
+min-content:表示“尽量少占据空间，但足够显示内容”。
+minmax(min-content, max-content)：轨道宽度介于最小内容宽度和最大内容宽度之间。
+minmax():用于设置轨道尺寸的上下限。minmax(0, max-content)：轨道宽度从0到最大内容宽度，但不会溢出栅格容器。
