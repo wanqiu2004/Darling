@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 50%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Send Greeting Request</h1>
+    <button id="sendRequest">Send Request</button>
+    <table id="responseTable" style="display: none;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("sendRequest").addEventListener("click", function () {
+            // 发送请求
+            fetch("http://localhost:8080/greeting?name=lala")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json(); // 解析 JSON 数据
+                })
+                .then(data => {
+                    // 显示表格并插入数据
+                    const table = document.getElementById("responseTable");
+                    const tbody = table.querySelector("tbody");
+
+                    // 清空表格数据
+                    tbody.innerHTML = "";
+
+                    // 插入新数据
+                    const row = document.createElement("tr");
+                    const idCell = document.createElement("td");
+                    const contentCell = document.createElement("td");
+
+                    idCell.textContent = data.id;
+                    contentCell.textContent = data.content;
+
+                    row.appendChild(idCell);
+                    row.appendChild(contentCell);
+                    tbody.appendChild(row);
+
+                    // 显示表格
+                    table.style.display = "table";
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    alert("Failed to fetch data from the server. Please check if the server is running.");
+                });
+        });
+    </script>
+</body>
+</html>

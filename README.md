@@ -1,29 +1,33 @@
-# MySQL 数据类型
+# MySQL 数据类型 ------------------
+
 - git status -s
 - git log --stat
 - git diff
 - git tag
 
-# CSS flex 复习
+# CSS flex 复习 ----------------------
 
-# Grid
+# Grid 复习 -------------------------
 
 # edge css 工具
 
-# tauri 
+# tauri -------------------
 
 # Java类的定义
 
-# tuned工具
+# tuned工具 ------------------------
+ 
+# 计划任务 ------------------------
 
-# 计划任务
+# Spring boot -------------------
 
-# Spring boot
+# maven ------------
 
-# maven
+# 微信小程序复习 --------------
 
-# 微信小程序复习
+# codespaces -------------
 
+# Vscode MySQL shell
 
 
 
