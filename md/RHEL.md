@@ -1,3 +1,348 @@
+---
+at 从标准输入或指定的文件读取命令
+batch 是基于系统负载的调度，任务会在系统空闲时执行。
+
+日期的指定必须在时间指定之后。
+1. month-name day
+```
+at 3pm Jan 15
+这个命令将在 1 月 15 日的 15:00 执行任务。默认使用当前年份，过期明年
+```
+
+2. YY-MM-DD
+```
+at 3pm 2025-01-15
+这个命令将在 2025 年 1 月 15 日的 15:00 执行任务。
+```
+
+3. 可以指定午夜（midnight）、中午（noon）或下午茶时间（teatime，4pm）
+
+4. 相对时间：now + count time-units
+
+5. 使用 today 和 tomorrow 可以确保任务在当天或次日执行，尤其适用于你不确定是否已经超过了指定时间的情况。
+
+如果你指定了一个过去的时间，at 会立即执行任务
+
+
+/etc/at.allow 和 /etc/at.deny
+
+
+at -f file -l -r -c
+
+---
+
+Cron 是一个在系统启动时启动的守护进程
+Cron 会检查以下文件和目录：
+
+
+crontab 是用于安装、删除或列出 cron 守护进程所使用的 crontab 文件的程序。
+-T：测试 crontab 文件的语法，不安装该文件。
+-l：列出当前用户的 crontab。
+-r：删除当前用户的 crontab。
+-e：使用 VISUAL 或 EDITOR 环境变量指定的编辑器编辑当前用户的 crontab。编辑完后，退出编辑器会自动安装修改过的 crontab。
+
+
+
+一个有效的 crontab 行要么是环境设置，要么是 cron 命令。环境设置的格式如下：
+`name = value`
+
+Cron 命令的格式每行包含五个时间和日期字段，接着是一个用户名（如果是系统 crontab 文件的话），然后是一个命令。
+cron 每分钟检查一次 cron 条目。
+
+
+1. 允许使用数字范围。范围由两个用连字符（-）分隔的数字组成。指定的范围是包含两个端点的。例如，8-11 表示在 8、9、10 和 11
+2. 随机化执行时间范围由两个数字用波浪号（~）分隔。例如，6~15 在“分钟”字段中表示从 6 到 15 分钟之间随机选择一个分钟。该范围是包含上下限的
+3. 列表允许指定一组数字或范围，用逗号分隔。例如，"1,2,5,9" 或 "0-4,8-12"。
+4. 步进值可以与范围一起使用。在范围后跟 /数字 会指定在该范围内按指定的数字跳过。例如，"0-23/2" 可以用于“小时”字段，表示每隔一小时执行一次命令步进值也可以在星号（*）后使用，例如，"*/2" 表示每两小时执行一次。
+5. 可以在“月份”和“星期几”字段中使用名称。使用特定日或月的前三个字母（大小写不敏感）。也可以使用名称的范围和列表。例如，"mon,wed,fri" 或 "jan-mar"。
+
+crontab 支持以下特殊时间规格（以 @ 开头的别名），可代替常规的时间字段定义：
+
+@reboot：系统重启后执行一次。
+@yearly：每年执行一次，等同于 0 0 1 1 *。
+@annually：每年执行一次，等同于 0 0 1 1 *。
+@monthly：每月执行一次，等同于 0 0 1 * *。
+@weekly：每周执行一次，等同于 0 0 * * 0。
+@daily：每天执行一次，等同于 0 0 * * *。
+@hourly：每小时执行一次，等同于 0 * * * *。
+
+
+
+/etc/cron.allow：允许使用 crontab 的用户列表。
+/etc/cron.deny：禁止使用 crontab 的用户列表。
+
+
+/etc/crontab：系统的主 crontab 文件，定义了系统级的定时任务。
+/var/spool/cron/：用户定义的 crontab 文件存储目录。
+/etc/cron.d/：用于存储系统级的 crontab 文件。
+
+
+crontab -T file -e -l -r 
+
+---
+
+
+# 定位并准确解读系统事件日志，以便进行故障排除。
+
+## Describe System Log Architecture
+
+1. 日志有什么用？对于我有什么用？谁会用？普遍性？
+```
+日志用于审计系统和排除故障。
+RHEL 使用基于 Syslog 协议的标准日志系统来记录系统消息。
+许多程序利用该日志系统记录事件
+```
+
+
+2. EL使用什么工具实现？日志存在哪里？是否重启清零？所有程序都使用吗？
+```
+systemd-journald 和 rsyslog 服务在EL中处理 syslog 消息。
+
+
+systemd-journald 服务是操作系统事件日志架构的核心。它从多个来源收集事件消息：
+- 系统内核
+- 启动过程的早期阶段的输出
+- 守护进程的标准输出和标准错误
+- Syslog 事件
+systemd-journald 服务将日志重构为标准格式，并将它们写入结构化、索引化的系统日志。
+默认情况下，这些日志存储内存
+
+
+rsyslog 是一个日志管理服务，它从systemd-journald中接收syslog消息，并对其进行处理。
+将 syslog 消息分类，并将其写入位于 /var/log 目录下的日志文件重启后依然存在
+
+
+/var/log 目录还包含来自系统上其他服务的日志文件
+| 日志文件            | 存储的消息类型                                                                 |
+|---------------------|-------------------------------------------------------------------------------|
+| `/var/log/messages`  | 大多数 syslog 消息都记录在这里。例外情况包括关于身份验证和邮件处理、计划任务执行以及纯粹的调试相关消息。 |
+| `/var/log/secure`    | 记录关于安全性和身份验证事件的 syslog 消息。                                      |
+| `/var/log/maillog`   | 记录关于邮件服务器的 syslog 消息。                                               |
+| `/var/log/cron`      | 记录关于计划任务执行的 syslog 消息。                                             |
+| `/var/log/boot.log`  | 记录关于系统启动的非 syslog 控制台消息。                                         |
+
+
+有些应用程序不使用 syslog 服务来管理它们的日志消息。例如，Apache Web 服务器将日志消息保存到 /var/log 目录下的一个子目录中。
+
+
+
+## Review Syslog Files
+
+1. syslog消息是如何被处理的？
+
+程序将事件记录到系统中。每条日志消息都会根据设施（即产生消息的子系统）和优先级（即消息的严重性）进行分类。
+
+rsyslog使用设施和优先级来确定如何处理它们。
+规则在 /etc/rsyslog.conf 文件和/etc/rsyslog.d目录下
+软件可以通过在 /etc/rsyslog.d 目录中安装适当的文件，轻松地添加规则。
+
+3. 什么是设施？什么是优先级？
+| 代码 | 设施         | 设施描述             |
+| ---- | ------------ | -------------------- |
+| 0    | kern         | 内核消息             |
+| 1    | user         | 用户级消息           |
+| 2    | mail         | 邮件系统消息         |
+| 3    | daemon       | 系统守护进程消息     |
+| 4    | auth         | 身份验证与安全消息   |
+| 5    | syslog       | 内部 syslog 消息      |
+| 6    | lpr          | 打印机消息           |
+| 7    | news         | 网络新闻消息         |
+| 8    | uucp         | UUCP 协议消息        |
+| 9    | cron         | 时钟守护进程消息     |
+| 10   | authpriv     | 非系统授权消息       |
+| 11   | ftp          | FTP 协议消息         |
+| 16-23| local0 到 local7 | 自定义本地消息   |
+
+
+| 代码 | 优先级 | 优先级描述           |
+| ---- | ------ | -------------------- |
+| 0    | emerg  | 系统不可用           |
+| 1    | alert  | 必须立即采取行动     |
+| 2    | crit   | 严重条件             |
+| 3    | err    | 非致命错误           |
+| 4    | warning| 警告条件             |
+| 5    | notice | 正常但重要的事件     |
+| 6    | info   | 信息性事件           |
+| 7    | debug  | 调试级别的消息       |
+
+
+3. 配置行长什么样子？什么含义？
+
+每行的左侧表示规则匹配的 syslog 消息的设施和优先级，右侧表示将日志消息保存到哪个文件
+`authpriv.*                  /var/log/secure`
+会将发送到 authpriv 设施的所有优先级的消息记录到 /var/log/secure 文件中
+更加具体的是：
+```
+#### 规则 ####
+
+# 将所有内核消息记录到控制台。
+# 记录其他信息会让屏幕变得杂乱。
+#kern.*                                                 /dev/console
+
+# 记录所有级别为 info 或更高级别的消息（除了邮件相关消息）。
+# 不记录私人身份验证消息！
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+
+# `authpriv` 文件具有受限访问权限。
+authpriv.*                                              /var/log/secure
+
+# 将所有邮件消息集中记录到一个地方。
+mail.*                                                  -/var/log/maillog
+
+# 记录 cron 相关的消息
+cron.*                                                  /var/log/cron
+
+# 所有用户都会收到紧急消息
+.emerg                                                 :omusrmsg:
+
+# 将新闻错误消息（优先级为 crit 及以上）保存到特定文件。
+uucp,news.crit                                          /var/log/spooler
+
+# 将启动消息也保存到 boot.log 文件
+local7.*                                                /var/log/boot.log
+```
+
+## Log File Rotation
+
+1. 什么是日志轮换？有什么用？会怎么做？cron不好吗？
+
+防止文件占用过多的 /var/log 目录空间。
+会重命名，并附加一个表示轮换日期的扩展名。
+logrotate命令经过通常四周的轮换后，最旧的日志文件会被丢弃
+一个定时任务每天运行 logrotate 命令，检查是否有日志文件需要轮换。
+logrotate也可以在日志文件达到特定大小时进行轮换。
+
+
+## Analyze a Syslog Entry
+
+1. 这日志一行什么意思啊？我要最新的！
+syslog通常按时间顺序排列，最旧的消息在日志文件的开头，最新的消息位于文件的末尾。
+/var/log/secure 的一行是这样的：
+`Mar 20 20:11:48 localhost sshd[1433]: Failed password for student from 172.25.0.10 port 59344 ssh2`
+
+tail -f /path/to/file 命令输出指定文件的最后十行，并继续输出文件中新写入的行。
+	
+
+
+## Send Syslog Messages Manually
+
+1. 非常好，我要自己发送一个syslog！
+
+logger 命令用于将消息发送到 rsyslog 服务。默认情况下，它将消息发送到 user 类型，优先级为 notice
+这对于测试对 rsyslog 服务配置所做的更改非常有用。
+
+请执行以下 logger 命令：
+`[root@host ~]# logger -p local7.notice "Log entry created on host"`
+
+
+---
+
+## Guided Exercise
+在/etc/rsyslog.d/目录内创建my.conf文件
+写入*.debug /var/log/message-debug这一行
+systenctm restart rsyslog.service
+logger -p user.debug '😁'
+---
+
+## 查找并解释系统日志中的条目，
+
+1. 我该如何找到我要的日志？
+
+systemd-journald 服务将日志数据存储在一个名为 journal 的结构化、索引化的二进制文件中。
+
+在EL中，基于内存的 /run/log 目录默认存储系统日志。当系统关闭时，/run/log 目录的内容会丢失。
+要获取日志消息，可以使用 journalctl 命令。可以使用该命令查看日志中的所有消息，或者搜索特定的事件。
+
+会突出显示重要的日志信息；优先级为 notice 或 warning 的消息会以粗体显示，而优先级为 error 或更高的消息则会以红色显示。
+
+默认情况下，journalctl 命令的 -n 选项会显示最后 10 条日志记录。
+类似于 tail 命令，journalctl 命令的 -f 选项会输出系统日志的最后 10 行，并继续输出新添加的日志条目。
+journalctl 命令的 -p 选项允许你显示指定优先级
+（可以用名称或数字表示）及其以上的日志条目。
+
+显示指定 systemd 单元的日志条目。 journalctl -u sshd.service
+
+可以将输出限制为特定的时间范围。--since 和 --until 选项。这两个选项都需要以 "YYYY-MM-DD hh:mm:ss" 格式的时间参数
+还可以指定从相对当前时间起的所有条目
+
+
+---
+## Guided Exercise
+
+搜索系统日志，记录符合特定标准的事件条目。
+
+使用 journalctl 命令的 -p warning 选项，显示机器上警告级别及以上的日志事件。
+journalctl -p warning
+显示过去 10 分钟内从当前时间起在 servera 机器上记录的所有日志事件。
+journalctl --since "-10min"
+显示从今天早上 09:00:00 以来来自 sshd 服务的所有日志事件。
+journalctl --since 9:00:00 _SYSTEMD_UNIT="sshd.service"
+
+---
+
+
+## 不管不管，我要将journal的日志记录到磁盘
+
+/etc/systemd/journald.conf 文件中的 Storage 参数定义了系统日志是否以易失方式存储（即重启后丢失）或以持久方式存储（即重启后保留）。
+
+- persistent：将日志存储在 /var/log/journal 目录中，重启后日志仍然存在。如果 /var/log/journal 目录不存在，systemd-journald 服务将创建该目录。
+- volatile：将日志存储在易失的 /run/log/journal 目录中。由于 /run 文件系统是临时的，仅在运行时内存中存在，因此其中的数据，包括系统日志，在重启后不会保留。
+- auto：如果 /var/log/journal 目录存在，systemd-journald 服务将使用持久存储；如果该目录不存在，则使用易失存储。如果未设置 Storage 参数，则默认使用此选项。
+
+- none：不使用任何存储。系统将丢弃所有日志，但仍然可以转发日志。
+然而，即使是持久日志，系统也不会永久保存所有数据。日志具有内置的日志轮换机制，
+此外，系统不会允许日志文件变得比它们所在文件系统的 10% 还大，或者文件系统剩余空间少于 15%。
+
+在 /etc/systemd/journald.conf 文件中取消注释 Storage=auto 行，并将 Storage 参数设置为 persistent 值。
+sudo systemctl restart systemd-journald.service
+
+
+
+## Maintain Accurate Time
+
+计算机可以从公共的NTP服务（例如NTP Pool Project）获取准确的时间信息，另一种选择是与高质量的硬件时钟同步，以为本地客户端提供准确的时间。
+timedatectl 命令显示当前系统的时间相关设置概览，包括当前时间、时区和NTP同步设置。
+
+
+
+
+
+
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 3. 调优系统性能
 
 

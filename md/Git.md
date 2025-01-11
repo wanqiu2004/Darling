@@ -222,7 +222,23 @@ git log --remotes="origin/*"
 %h：简短的提交哈希。
 
 
+有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 --amend 选项的提交命令来重新提交：`git commit --amend`
+例如，你提交后发现忘记了暂存某些需要的修改，可以像下面这样操作：
+```
+$ git commit -m 'initial commit'
+$ git add forgotten_file
+$ git commit --amend
+```
+最终你只会有一个提交——第二次提交将代替第一次提交的结果。
 
+ 例如，你已经修改了两个文件并且想要将它们作为两次独立的修改提交， 但是却意外地输入 git add * 暂存了它们两个。如何只取消暂存两个中的一个呢？
+git status 命令提示了你
+`git reset HEAD <file>…​ 来取消暂存。`
+
+
+如果你并不想保留对 CONTRIBUTING.md 文件的修改怎么办？ 如何方便地撤消修改——将它还原成某个提交的样子
+git status 也告诉了你应该如何做。
+`(use "git checkout -- <file>..." to discard changes in working directory)`
 
 
 
