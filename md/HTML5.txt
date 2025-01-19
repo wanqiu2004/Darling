@@ -1,0 +1,266 @@
+表单是HTML中获取用户输入的手段。
+收集特定类型数据以及在浏览器中检查数据
+制作一个基本的表单需要三个元素：form 、input 和button 元素。
+
+button元素用在form 元素中且没有设置任何属性时，
+其作用是告诉浏览器把用户输入的数据提交给服务器。
+其type为reset时会将表单所有的值清空
+
+form的action 属性说明了提交表单时浏览器应该把从用户收集的数据发送到什
+么地方。默认该HTML文档的URL。
+
+form的method 允许的值有get 和post 这两个，它们分别对应于HTTP的GET 和POST 方法。
+autocomplete记住用户输入表单的数据，并在再次遇到类似表单的时候自动使用这些数据帮用户填写。
+允许的值有两个：on 和off 。
+
+form的enctype 属性指定了浏览器对发送给服务器的数据采用的编码方式。
+application/x-www-form-urlencoded提交的数据示例：username=exampleuser&password=password123
+multipart/form-data适用于文件上传
+
+默认情况下浏览器会用提交表单后服务器反馈的信息替换表单所在的原页
+面。这可以用form 元素的target 属性予以改变。
+_blank
+将浏览器反馈信息显示在新窗口（或标签页）中
+_parent 将浏览器反馈信息显示在父窗框组中
+_self
+将浏览器反馈信息显示在当前窗口中（这是默认行为）
+_top
+将浏览器反馈信息显示在顶层窗口中
+<frame> 将浏览器反馈信息显示在指定窗框中
+
+对于更复杂的表单，有时需要将一些元素组织在一起。为此可以使用
+fieldset 元素。legend元素添加名
+fieldest一般是form的子元素，legend是fieldest的子元素
+用fieldset 禁用整组input 元素
+
+与表单相关的元素不必放在form元素中。
+
+
+
+
+
+有三个元素是每个表格都必须要有的：table 、tr 和td 。
+浏览器会保证
+让列的宽度足以容纳最宽的内容，让行的高度足以容纳最高的单元格。
+th单元格是头
+
+规范一点就是：
+tbody 元素表示构成表格主体的全体行——不包括表头行和表脚行（它们分别由thead 和tfoot 元素表示，
+即便在文档中表格没有用到tbody 元素，大多数浏览器在
+处理table 元素的时候都会自动插入tbody 元素。因此完全根据文档中
+的表格结构来设计的CSS选择器有可能不管用。
+
+单元格会跨越几行或几列。这种表格的制作要用单元格元素的colspan 和rowspan 属性。
+caption 元素可以用来为表格定义一个标题并将其与表格关联起来。
+
+HTML中的表格是基于行的。单元格的定义都要放在tr 元素中，而表格
+则是一行一行地组建出来的。因此对列应用样式有点不方便
+
+解决办法是使用colgroup 和col 元素。colgroup 代表一组列。
+col 元素位于colgroup 元素之中，每个col 元素代表列组中的一列（未使用span 属性的情况）
+一个colgroup有多少个col那么就有多少列注意span
+
+table 元素定义了border 属性。可以绘制边框
+值必须设置为1或空字符串（"" ）
+不设置表格的border 属性也能用CSS为其定义边框。
+
+
+
+
+
+type 属性设置为text(默认) 的input 元素在浏览器中显示为一个单行文本框。
+maxlength 属性设定了用户能够输入的字符的最大数目，size 属性则设定了文本框能够显示的字符数目。
+可以用value 属性设置一个默认值，还可以用placeholder属性设置一段提示文字，
+
+input 元素与datalist 元素的结合，实现数据列表
+将list属性值与datalist的id绑定
+datalist元素用opition元素实现
+
+readonly 和disabled 属性都可以用来生成用户不能编辑的文本框，
+disabled 属性的input 元素的数据没有被提交到服务器。readonly可以
+password 型input 元素用于输入密码
+
+类型为number 的input 元素生成的输入框只接受数值。有些
+浏览器（如Chrome）还会在旁边显示用来上调和下调数值的箭头形小按
+钮。
+
+range 型input 元素是拉动条
+
+checkbox 型input 元素会生成供用户选择是或否的复选框。
+
+value设定在复选框呈勾选状态时提交给服务器的数据值。默认为on
+
+radio 型input 元素可以用来生成一组单选按钮，要生成一组
+互斥的选项，只消将所有相关input 元素的name 属性设置为同一个值即
+可。
+
+search 型input 元素
+
+最后一种input 元素类型是file 型，它可以在提交表单时将文件上传到服务器。
+
+<section> 用于将相关的内容块组织成一个逻辑上的部分。只包含全局属性
+
+<footer> 元素表示脚，只有全局属性通常包含有关该部分作者、版权数据或相关文档链接的信息。
+<header>表示介绍性内容，通常是一组介绍性或导航性辅助内容。它可能包含一些标题元素，也可能包含徽标、搜索表单、作者姓名和其他元素。
+
+nav 元素表示文档中的一个区域，它包含着到其他页面或同一页面的其他部分的链接。
+该元素的目的是规划出文档的主要导航区域。菜单，目录和索引。这个元素只包含全局属性
+
+article 元素代表HTML文档中一段独立成篇的内容，从理论上讲，可以独立于页面其余内容发布或使用此元素只具有全局属性。
+独立结构，其意在成为可独立分配的或可复用的结构，
+如在发布中，它可能是论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。
+
+aside 元素用来表示跟周边内容稍沾一点边的内容，类似于书籍或杂志
+中的侧栏。其通常表现为侧边栏或者标注框（call-out boxes）。此元素只有全局属性
+
+address 元素用来表示文档或article 元素的联系信息。
+<address> 可以在多种场景下使用，例如在页面头部提供企业的联系方式，或在 <article> 内嵌入 <address> 元素来标注文章作者的联系信息。
+这个元素只包含全局属性。
+
+details 元素在文档中生成一个区域，用户可以展开它以了解关于某主题的更多详情。
+可创建一个组件，仅在被切换成展开状态时，它才会显示内含的信息。<summary> 元素可为该部件提供概要或者标签。默认的关闭状态只显示三角形和 <summary> 内的标签
+此元素包含全局属性。
+
+
+
+超链接a元素可以导航，可以拉起邮件
+可以直接跳到文档的一节<a href="#fruits">
+target指定链接的东西出现在哪里
+
+strong 元素表示一段重要文字。
+s 元素用来表示一段文字不再正确或准确。其习惯样式是在文字上显示一条删除线。
+small 元素表示小号字体内容（fine print），常用于免责声明和澄清声明。
+br 元素只宜用在换行也是内容的一部分的情况
+sub 和sup 元素分别用于表示下标和上标。
+abbr 元素用来表示缩写。其title 属性表示的是该缩写代表的完整词语。
+span 元素本身没有任何含义。全局属性
+
+
+p 元素代表段落。
+div 元素没有具体的含义。
+pre 让源文档中的格式得以保留。
+blockquote 元素表示引自他处的一片内容。
+ol 元素表示有序列表。列表项目用li 注意这时他有value 元素表示
+ul 元素表示无序列表。与ol 元素一样，ul 元素中的列表项用li 元素
+
+
+<select> 元素表示一个提供选项菜单的控件：内涵option元素
+每个 <option> 元素都应该有一个 value 属性，其中包含被选中时需要提交到服务器的数据值。默认为元素中的文本。
+multiple 规定了能不能同时选中多个选项，size 规定了一次性显示多少选项。这个元素也支持大多数常见的表单输入元素属性，如 required, disabled, autofocus 等。
+还可以将 <option> 元素放在 <optgroup> 元素中以为下拉菜单创建不同的选项分组。
+
+<textarea>多行纯文本编辑控件，允许用户输入大量文本的场景，例如评论或反馈表单。
+placeholder 
+
+
+img src 属性是必须的，它包含了你想嵌入的图片的路径。alt 属性包含一条对图像的文本描述
+
+base 元素可用来设置一个基准URL 他的href 基准URL。target 
+
+meta style link 元素可用来在HTML文档和外部资源 script 元素可以用来在页面中加入脚本、
+
+
+video 元素
+audio 元素
+canvas 元素
+拖放
+
+
+
+
+
+
+
+DOM）通过将文档的结构以对象的形式存储在内存中，
+将网页与脚本或编程语言连接起来。尽管将 HTML、SVG 或 XML 文档建模为对象并不是 JavaScript 核心语言的一部分，但它通常与 JavaScript 相关。
+DOM 使用逻辑树的形式来表示文档。树的每个分支末端都是一个节点，每个节点都包含对象。DOM 方法允许以编程方式来访问树。借助这些方法，你可以改变文档的结构、样式或内容。
+
+
+EventTarget
+ ├── Node
+ │    ├── Element
+ │    ├── Document
+ │    │    └── XMLDocument
+ │    ├── DocumentFragment
+ │    ├── DocumentType
+ │    ├── Text
+ │    ├── Comment
+ │    ├── CDATASection
+ │    └── ProcessingInstruction
+ ├── AbortSignal
+ └── MutationObserver
+
+Event
+ ├── CustomEvent
+
+AbstractRange
+ ├── Range
+ └── StaticRange
+
+NamedNodeMap
+ ├── Attr
+ ├── HTMLCollection
+ └── NodeList
+
+独立接口
+ ├── DOMParser
+ ├── DOMImplementation
+ ├── TextEncoder / TextDecoder
+ ├── DOMPoint / DOMPointReadOnly
+ ├── DOMRect
+ ├── TimeRanges
+ ├── DOMException
+
+EventTarget 类型的对象可以接收事件 创建侦听器
+主要是Element、document 和 window 三个对象
+addEventListener	为目标注册一个事件监听器，当事件发生时调用指定的回调函数。	可以为同一事件注册多个监听器；支持额外选项，如 once、capture 等。
+removeEventListener	从目标上移除事件监听器，停止监听事件。	必须使用同样的回调函数引用和配置参数来移除；匿名函数无法移除。
+dispatchEvent	手动触发一个事件，让它按照事件流的规则传播。	触发内置或自定义事件；需要创建并传入一个 Event 对象。
+
+
+Node 接口实例的字段
+baseURI	返回包含该节点的文档的基础 URL。
+childNodes	返回一个动态更新的 NodeList，包含节点的所有子节点（包括元素、文本和注释）。
+firstChild	返回节点的第一个直接子节点，或为 null（无子节点）。
+isConnected	返回布尔值，指示节点是否与上下文对象（如 Document 或 ShadowRoot）直接或间接连接。
+lastChild	返回节点的最后一个直接子节点，或为 null（无子节点）。
+nextSibling	返回树中当前节点的下一个节点，或为 null。
+nodeName	返回节点的名称，不同节点类型的结构不同，例如：HTMLElement 对应标签名（如 AUDIO），Text 节点为 #text，Document 节点为 #document。
+nodeType	返回一个无符号的短整型值表示节点类型（例如，ELEMENT_NODE 是 1，TEXT_NODE 是 3）。
+nodeValue	返回/设置当前节点的值。
+ownerDocument	返回包含该节点的 Document 对象，如果节点本身就是文档，返回 null。
+parentNode	返回当前节点的父节点（Node），如果没有父节点，返回 null。
+parentElement	返回当前节点的父元素（Element），如果父节点不是元素，返回 null。
+previousSibling	返回树中当前节点的上一个节点，或为 null。
+textContent	返回/设置节点及其所有后代的文本内容。
+
+方法：
+appendChild()	将指定的节点作为当前节点的最后一个子节点。如果该节点已在树中，将先移除它的当前位置。
+cloneNode()	克隆一个节点，可选择是否克隆其内容（默认克隆内容）。
+compareDocumentPosition()	比较当前节点和另一节点在文档中的位置关系。
+contains()	判断一个节点是否为调用节点的后代。
+getRootNode()	返回上下文对象的根节点（包括可选的影子根节点）。
+hasChildNodes()	判断节点是否有子节点。
+insertBefore()	在指定的参考节点前插入一个节点作为子节点。
+isDefaultNamespace()	判断给定命名空间 URI 是否为该节点的默认命名空间。
+isEqualNode()	判断两个节点是否相同类型且所有定义数据点匹配。
+isSameNode()	判断两个节点是否是同一个节点（引用相同对象）。
+lookupPrefix()	根据命名空间 URI 查找前缀，若无则返回 null。
+lookupNamespaceURI()	根据前缀查找命名空间 URI，若无则返回 null。
+normalize()	清理元素下的所有文本节点（合并相邻文本节点，移除空文本节点）。
+removeChild()	从当前节点移除一个子节点，需确保该节点确实是当前节点的子节点。
+replaceChild()	使用给定节点替换当前节点的一个子节点。
+
+
+
+Document
+Location 对象
+Window 对象
+History 对象
+Screen 对象
+Text 对象
+CSSStyleDeclaration 对象
+HTMLMediaElement 对象
+Geolocation 对象
+Storage 对象
+离线应用程序缓存功能允许我们指定Web应用程序所需的全部资源，这样浏览器就能在加载HTML文档时把它们都下载下来。

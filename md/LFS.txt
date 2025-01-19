@@ -1,0 +1,32 @@
+LFS 的主要目标架构是 AMD/Intel 的 x86 (32 位) 和 x86_64 (64 位) CPU。
+构建 LFS 都至少需要一个现有的 Linux 系统
+
+构建 64 位系统相较于 32 位系统而言只会获得很小的收益。例如，在使用 Core i7-4790 CPU 的 4 个 CPU 核心测试构建 LFS-9.1 时，我们得到的实验数据为：
+架构        构建时间       系统大小
+32 位       239.9 分钟     3.6 GB
+64 位       233.2 分钟     4.4 GB
+
+在相同的硬件上，64 位系统的构建仅仅比 32 位快 3% (但占用的磁盘空间却大 22%)。如果您准备用 LFS 系统运行 LAMP 服务器，或者防火墙，那么 32 位 CPU 足以满足需求。然而，BLFS 中的一些软件包在构建或运行过程中可能需要超过 4GB 的内存，因此如果您准备将 LFS 作为桌面系统，LFS 作者推荐构建 64 位系统。
+
+
+本书构建的 LFS 系统是一个“纯粹的” 64 位系统。换句话说，它只能运行 64 位可执行程序。
+
+
+LFS 的结构尽可能遵循 Linux 的各项标准。主要的标准有：
+POSIX.1-2008.
+Filesystem Hierarchy Standard (FHS) Version 3.0
+Linux Standard Base (LSB) Version 5.0 (2015)
+
+
+LSB Core:
+Bash, Bc, Binutils, Coreutils, Diffutils, File, Findutils, Gawk, Grep, Gzip, M4, Man-DB, Ncurses, Procps, Psmisc, Sed, Shadow, Tar, Util-linux, Zlib
+At, Batch (At 的一部分), Cpio, Ed, Fcrontab, LSB-Tools, NSPR, NSS, PAM, Pax, Sendmail (或 Postfix，或 Exim), time
+LSB Runtime Languages:
+Perl, Python
+
+
+LFS 被设计为在一次会话中构建完成。换句话说，本书的指令假设，在整个编译过程中，系统不会关闭或重启。
+
+
+一个最小的系统需要大小约 10 吉字节 (GB) 的分区。这足够保存所有源代码压缩包，并且编译所有软件包。然而，如果希望用 LFS 作为日常的 Linux 系统，很可能需要安装额外软件，需要更多空间。一个 30 GB 的分区是比较合理的。
+计算机未必有足够满足编译过程要求的内存 (RAM) 空间，因此可以使用一个小的磁盘分区作为 swap 空间。内核使用此分区存储很少使用的数据，从而为活动进程留出更多内存。
