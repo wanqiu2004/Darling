@@ -1,3 +1,34 @@
+/usr/bin/vmhgfs-fuse .host:/ ~/www/vod/ -o subtype=vmhgfs-fuse,allow_other
+/etc/fuse.conf
+ffmpeg -i input.mp4 -bsf:v h264_mp4toannexb -f hls -hls_time 10 -hls_list_size 0 output.m3u8
+
+
+
+sudo dnf install python3 augeas-libs
+sudo python3 -m venv /opt/certbot/
+sudo /opt/certbot/bin/pip install --upgrade pip
+sudo /opt/certbot/bin/pip install certbot certbot-nginx
+sudo ln -s /opt/certbot/bin/certbot /usr/bin/certbot
+sudo certbot certonly --nginx
+vim /etc/crontab
+```
+0 0,12 * * * root /opt/certbot/bin/python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo certbot renew -q 
+```
+
+
+---
+HISTSIZE：该变量决定了当前 shell 会话中可以保存多少条历史命令。
+HISTFILESIZE：该变量决定了历史记录文件（通常是 ~/.bash_history）中可以保存多少条命令。
+HISTTIMEFORMAT：如果设置了这个变量，它会用于指定历史命令的时间戳格式。格式字符串与 strftime 函数兼容，可以自定义时间戳的输出格式。比如，可以设置为 export HISTTIMEFORMAT="%F %T "，以便显示 YYYY-MM-DD HH:MM:SS 格式的时间s。
+
+
+sort uniq wc shopt curl wget systemd source du df find jq lsof logrotate wireshark watch ss tcpdump rsync sed grep awk hostnamectl timedatectl chroot uptime
+chmod chown ip sha256sum lscpu lsblk blkid mount nmcli firewall
+
+---
+diff -q -s -c -y --suppress-common-lines -r -B 
+
+---
 tree \
   -a \                # 显示所有文件，包括隐藏文件
   -d \                # 仅列出目录
@@ -20,7 +51,6 @@ tree \
   --dirfirst \        # 先列出目录，再列出文件
 
 ---
-
 星期一 Mon
 星期二 Tue
 星期三 Wed
@@ -35,37 +65,30 @@ at 从标准输入或指定的文件读取命令
 batch 是基于系统负载的调度，任务会在系统空闲时执行。
 
 日期的指定必须在时间指定之后。
-1. month-name day
-```
-at 3pm Jan 15
-这个命令将在 1 月 15 日的 15:00 执行任务。默认使用当前年份，过期明年
-```
-
-2. YY-MM-DD
+1. YY-MM-DD
 ```
 at 3pm 2025-01-15
 这个命令将在 2025 年 1 月 15 日的 15:00 执行任务。
 ```
 
-3. 可以指定午夜（midnight）、中午（noon）或下午茶时间（teatime，4pm）
+2. 可以指定午夜（midnight）、中午（noon）或下午茶时间（teatime，4pm）
 
-4. 相对时间：now + count time-units
+3. 相对时间：now + count time-units
 
-5. 使用 today 和 tomorrow 可以确保任务在当天或次日执行，尤其适用于你不确定是否已经超过了指定时间的情况。
-
+4. 使用 today 和 tomorrow 可以确保任务在当天或次日执行
 如果你指定了一个过去的时间，at 会立即执行任务
 
+/etc/at.allow 和 /etc/at.deny 互斥
 
-/etc/at.allow 和 /etc/at.deny
+-f file 从指定文件中读取任务的命令 
+-l 列出当前用户的 at 队列任务 
+-r 删除指定的任务
+-c 打印指定任务的详细内容
 
-
-at -f file -l -r -c
 
 ---
 
 Cron 是一个在系统启动时启动的守护进程
-Cron 会检查以下文件和目录：
-
 
 crontab 是用于安装、删除或列出 cron 守护进程所使用的 crontab 文件的程序。
 -T：测试 crontab 文件的语法，不安装该文件。
@@ -562,17 +585,6 @@ ssh-keygen 会生成密钥并询问保存私钥的文件名。公钥会保存为
 
 
 ssh-keygen 支持签署密钥以生成可用于用户或主机身份验证的证书。
-
-
-
-
-
-
-
-
-
-
-
 
 
 
