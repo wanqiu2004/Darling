@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索关键词高亮</title>
+    <style>
+        ::highlight(search-highlight) {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="search" placeholder="输入关键词">
+    <button onclick="highlightSearch()">搜索</button>
+    <p id="content">CSS Custom Highlight API 允许你高亮特定的文本，非常适合搜索功能。</p>
+
+    <script>
+        function highlightSearch() {
+            let keyword = document.getElementById("search").value;
+            let textNode = document.getElementById("content").firstChild;
+            let text = textNode.nodeValue;
+            
+            let index = text.indexOf(keyword);
+            if (index !== -1) {
+                let range = new Range();
+                range.setStart(textNode, index);
+                range.setEnd(textNode, index + keyword.length);
+                
+                let highlight = new Highlight(range);
+                CSS.highlights.set("search-highlight", highlight);
+            }
+        }
+    </script>
+</body>
+</html>

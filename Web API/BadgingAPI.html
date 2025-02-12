@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Custom Highlight API 示例</title>
+    <style>
+        ::highlight(my-highlight) {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p id="text">这是一个用于演示 <b>CSS Custom Highlight API</b> 的文本，你可以看到特定的部分被高亮显示。</p>
+    <button onclick="highlightText()">高亮 '演示'</button>
+    
+    <script>
+        function highlightText() {
+            // 获取要高亮的范围
+            let textNode = document.getElementById("text").firstChild;
+            let range = new Range();
+            range.setStart(textNode, 6);  // "演" 的位置
+            range.setEnd(textNode, 8);    // "示" 的位置
+
+            // 创建并应用高亮
+            let highlight = new Highlight(range);
+            CSS.highlights.set("my-highlight", highlight);
+        }
+    </script>
+</body>
+</html>

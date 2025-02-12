@@ -10,6 +10,73 @@
 可以在本机应用的不同部分嵌入 Web 代码，或在单个 WebView2 实例中生成所有本机应用。 
 
 
+
+# DevTools
+## 概述
+是浏览器内置 Web 开发工具。出现在网页旁边
+用于检查和调试网页，编辑源网页
+按 F12 或右键检查打开
+打开新选项卡时，让 DevTools 自动打开
+`start msedge --auto-open-devtools-for-tabs`
+
+DevTools UI 是使用 HTML 和 CSS实现的可以放大缩小
+
+活动栏 快速工具栏显示工具
+
+输入命令 Ctrl Shit P
+
+
+## 在控制台中运行 JavaScript
+Ctrl Shift J打开控制台
+错误报告右边有放大镜，可直接搜索
+
+键入 2+2，而不按 Enter。
+键入时， 控制台 会在下一行中立即显示结果 4 。 
+无论 JavaScript 是否正确以及是否存在有效结果，控制台 都会在键入 时显示结果。
+若要解决单行限制，请按 Shift+Enter 而不是 Enter。
+控制台中直接使用 顶级 await 来执行异步 JavaScript 代码，而不需要将 await 语句包裹在一个异步函数
+使用 console.table() log 方法仅接收你感兴趣的信息
+
+它会发送请求并将响应中的数据复制到剪贴板：copy()
+
+真正的强大之处在于你有权访问 window 对象。编写与当前网页交互的脚本
+
+
+为网页中的所有链接周围添加绿色边框：
+`$$('a').forEach(a => a.style.border='1px solid lime');`
+$$(selector) 控制台实用工具的函数为 "Query selector all"。 此 DOM 查询选择器函数返回与指定的 CSS 选择器匹配的所有元素的数组，
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Edge扩展
 
 必不可少的是：**HTML CSS JS JSON**

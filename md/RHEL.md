@@ -1,9 +1,31 @@
 /usr/bin/vmhgfs-fuse .host:/ ~/www/vod/ -o subtype=vmhgfs-fuse,allow_other
 /etc/fuse.conf
-ffmpeg -i input.mp4 -bsf:v h264_mp4toannexb -f hls -hls_time 10 -hls_list_size 0 output.m3u8
+ffmpeg -i input.mp4  -f hls -hls_time 10 -hls_list_size 0 index.m3u8
+ffmpeg -i i.jpg -vf "crop=in_w:in_w*9/16" index.jpg
+ffmpeg -i .\小七纯欲JK清纯班长\index.m3u8 -vf "select='eq(pict_type\,I)'" -vsync vfr -frame_pts true .\1\%3d.jpg
+ffmpeg.exe -i .\index.mp4 -v error -f null -
+ffmpeg.exe -hide_banner -i .\Natali.mp4 -filter_complex "[0:v]split=2[v360p][v1080p]; [v360p]scale=640:-1[v360p_out]; [v1080p]scale=1920:-1[v1080p_out]" -map "[v360p_out]" -f hls -hls_time 10 -hls_list_size 0 360p/index.m3u8 -map "[v1080p_out]" -f hls -hls_time 10 -hls_list_size 0 1
+080p/index.m3u8
+ffmpeg.exe -i .\index.mp4 -vf scale=-1:360 -f hls -hls_time 10 -hls_list_size 0 .\360p\index.m3u8
+
+python -c "import urllib.parse; print(dir(urllib.parse))"
+ip -6 addr show ens33 | grep -E -o 'inet6 [0-9a-fA-F:]+'
+ip -4 addr show ens33 | grep -E -o 'inet [0-9.]+'
+mailx
+sudo dnf config-manager --set-disabled epel
+sudo ip route add default via 192.168.1.1 dev ens33
+dnf repolist all
+
+
+javac --module-source-path src -d out -m com.example.helloworld
+java --module-path out -m com.example.helloworld/com.example.helloworld.HelloWorldSwing
+jar -c -f com.example.helloworld.jar --main-class com.example.helloworld.HelloWorldSwing -C out/com.example.helloworld .
+jpackage -n HelloWorldApp --input . --main-jar com.example.helloworld.jar --main-class com.example.helloworld.HelloWorldSwing --type app-image --dest output
+Compress-Archive .\HelloWorldApp\ MyApp
 
 
 
+Let's Encrypt
 sudo dnf install python3 augeas-libs
 sudo python3 -m venv /opt/certbot/
 sudo /opt/certbot/bin/pip install --upgrade pip
@@ -22,8 +44,7 @@ HISTFILESIZE：该变量决定了历史记录文件（通常是 ~/.bash_history�
 HISTTIMEFORMAT：如果设置了这个变量，它会用于指定历史命令的时间戳格式。格式字符串与 strftime 函数兼容，可以自定义时间戳的输出格式。比如，可以设置为 export HISTTIMEFORMAT="%F %T "，以便显示 YYYY-MM-DD HH:MM:SS 格式的时间s。
 
 
-sort uniq wc shopt curl wget systemd source du df find jq lsof logrotate wireshark watch ss tcpdump rsync sed grep awk hostnamectl timedatectl chroot uptime
-chmod chown ip sha256sum lscpu lsblk blkid mount nmcli firewall
+ACL Ansible arp awk blkid certbot chmod chown chroot cron curl df diff dnf du export fdisk find firewall FreeIPA git grep head hostnamectl ip journalctl jq kill KVM logrotate lsblk lscpu lsof LVM mkdir mkfs mount mtr NetworkManager NFS nmcli nmtui parted passwd Podman ps rpm rsync Samba sed SELinux sha256sum shopt sort source ss Stratis sudo sysctl syslog systemd tail tar tcpdump tee timedatectl tr tree tuned uniq unset uptime useradd vmstat watch wc wget XFS wipefs dd which jobs env printenv wireguard dante ls ping
 
 ---
 diff -q -s -c -y --suppress-common-lines -r -B 
