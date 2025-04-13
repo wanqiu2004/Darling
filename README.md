@@ -25,7 +25,7 @@
 
 # 微信小程序复习 --------------
 
-# codespaces -------------
+# codespaces -
 
 # Vscode MySQL shell
 
